@@ -16,10 +16,10 @@ const Wrapper = styled.div`
     display:flex;
 `;
 
-const Box = styled(motion.div)`
-    width:50vw;
-    height:80vh;
-    background-color: gold;
+    const Box = styled(motion.div)`
+        width:50vw;
+        height:80vh;
+        background-color: gold;
 `;
 
 const Cat = styled(Box)`
@@ -32,42 +32,14 @@ const Dog = styled(Box)`
     right:0;
 `;
 
-const Video: React.FC<IProps> = ({ className, src }) => {
-    const [nowPlaying, setNowPlaying] = useState(false);
-    const [currentTime, setCurrentTime] = useState(0);
-    const [showControl, setShowControl] = useState(false);
-  
-    const ref = useRef<HTMLVideoElement>(null);
-  
-    const totalTime = (ref && ref.current && ref.current.duration) || 0;
-    const videoElement = ref && ref.current;
-  
-    // const classProps = classNames(styles.video, className);
-  
-    const videoSrc = src || "";
-    const startTime = Math.floor(currentTime);
-  
-    // 동영상 시간 업데이트 함수
-    const addTimeUpdate = () => {
-      const observedVideoElement = ref && ref.current;
-      if (observedVideoElement) {
-        observedVideoElement.addEventListener("timeupdate", function() {
-          setCurrentTime(observedVideoElement.currentTime);
-        });
-        // 컴포넌트가 처음 마운트 될 때 동영상 시작 할지 말지 여부 (여기서는 시작되게 했음)
-        setNowPlaying(true);
-        observedVideoElement.play();
-      }
-    };
 
+function Versus(props:any) {
+    const mouseHover = () => {
+      console.log("hi");
+      this.refs.video.play()
+    }
 
-const mouseHover = () => {
-    console.log("hi");
-    
-}
-
-function Versus() {
-    return (
+    return (    
         <>
         <Wrapper>
             <Cat >
@@ -76,7 +48,7 @@ function Versus() {
             <Dog>
                 <img src="img/DogPunch.gif" />
                 <video
-                    ref={ref}
+                    ref={video}
                     onMouseEnter={mouseHover}
                 >
                     <source src="img/Dog.mp4" type="video/mp4" />
