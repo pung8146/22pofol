@@ -17,11 +17,13 @@ const Logo = styled.svg`
 const Items = styled.ul`
     display:flex;
     align-items: center;
+    margin-left: 10px;
 `;
 
 const Item = styled.li`
     margin-right: 20px;
 `;
+
 
 function Header() {
     return (
@@ -35,7 +37,7 @@ function Header() {
                 </Items> 
             </Col>
             <Col>
-                {/* <RightBtn></RightBtn> */}
+                {/* <button>search</button> */}
             </Col>
         </Nav>
     )
