@@ -34,7 +34,6 @@ interface control {
  
  const reverseVideo = () => {
     videoRef.current.on('play',function(){
-       videoRef.playBackRate = 1.0; 
     })
 }
 
