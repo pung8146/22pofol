@@ -13,7 +13,7 @@ function App() {
     {/* <Header /> */}
     {/* <Loading /> */}
     <Routes>
-      <Route path="/" element={<Versus />} /> 
+      {/* <Route path="/" element={<Versus />} />  */}
       <Route path="/" element={<Home />} /> 
     </Routes>
     </BrowserRouter>

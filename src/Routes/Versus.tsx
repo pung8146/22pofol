@@ -27,15 +27,15 @@ const Dog = styled(Box)`
     right:0;
 `;
 
+const Video = styled(motion.video)`
+    /* width: 100%;
+    height:100%; */
+`
+
 interface control {
     play: string;
     pause: string;
  }
- 
- const reverseVideo = () => {
-    videoRef.current.on('play',function(){
-    })
-}
 
 function Versus(props:any) {
 
@@ -53,20 +53,20 @@ function Versus(props:any) {
         <>
         <Wrapper>
             <Cat >
-                <video ref={videoRef}
+                <Video ref={videoRef}
                     onMouseEnter={() => videoHandler("play")}
                     onMouseLeave={() => videoHandler("pause")}
                 >
                     <source src="img/CatPunch.mp4" type="video/mp4" />
-                </video>
+                </Video>
             </Cat>
             <Dog>
-                <video ref={videoRef}
+                <Video ref={videoRef}
                     onMouseEnter={() => videoHandler("play")}
                     onMouseLeave={() => videoHandler("pause")}
                 >
                     <source src="img/DogPunch.mp4" type="video/mp4" />
-                </video>
+                </Video>
             </Dog>
         </Wrapper>
         </>
