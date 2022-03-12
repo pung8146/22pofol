@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 
 function Home() {
     return (
-        <Wrapper>
+        <Wrapper> 
             <Title>Hi</Title>
         </Wrapper>
     )
