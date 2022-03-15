@@ -1,15 +1,17 @@
 import { BrowserRouter , Route , Routes} from "react-router-dom";
 import Header from "./Routes/Components/Header";
-import Home from "./Routes/Home";
 import Versus from "./Routes/Versus";
 import {motion} from 'framer-motion';
+import styled from "styled-components";
 // import Loading from "./Loading";
 
 import RouteTest from "./Routes/Components/RouteTest";
+import Home from "./Routes/pages/Home";
 import Blog from "./Routes/pages/Blog"; 
 import New from "./Routes/pages/New"; 
 import Edit from "./Routes/pages/Edit";
 import Diary from "./Routes/pages/Diary";
+
 
 function App() {
   return(

@@ -5,15 +5,19 @@ const Title = styled.h1`
 `
 
 const Wrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width:100vw;
-    height:100vh;
     background-color: ${(props) => props.theme.backgroundColor};
+    font-family: "Nanum pen Script";
 `
 
 function Home() {
     return (
         <Wrapper> 
             <Title>Hi</Title>
+            <h2> 이곳은 홈 입니다</h2>
         </Wrapper>
     )
 }
