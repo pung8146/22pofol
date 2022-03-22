@@ -13,11 +13,11 @@ interface Ctl {
 
 const ControlMenu = ({ value, onChange, optionList }: Ctl) => {
   return (
-    <select>
+    <select value={value} onChange={(e) => onChange(e.target.value)}>
       {optionList.map((it: any, idx: any) => (
         <option key={idx} value={it.value}>
           {it.name}
-        </option>
+        </option> 
       ))}
     </select>
   );
