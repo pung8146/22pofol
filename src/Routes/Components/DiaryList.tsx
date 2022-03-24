@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DiaryItem from "./DiaryItem";
 import MyButton from "./MyButton";
@@ -20,7 +20,7 @@ interface Ctl {
   optionList: any;
 }
 
-const ControlMenu = ({ value, onChange, optionList }: Ctl) => {
+const ControlMenu = React.memo(({ value, onChange, optionList }: Ctl) => {
   return (
     <select
       className="ControlMenu"
@@ -34,7 +34,7 @@ const ControlMenu = ({ value, onChange, optionList }: Ctl) => {
       ))}
     </select>
   );
-};
+});
 
 const DiaryList = ({ diaryList }: any) => {
   const navigate = useNavigate();

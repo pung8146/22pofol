@@ -25,7 +25,10 @@ const reducer = (state: any, action: any) => {
       return action.data;
     }
     case "CREATE": {
-      newState = [action.data, ...state];
+      const newItem = {
+        ...action.data,
+      };
+      newState = [newItem, ...state];
       break;
     }
     case "REMOVE": {
@@ -58,11 +61,9 @@ function App() {
       const diaryList = JSON.parse(localData).sort(
         (a: any, b: any) => parseInt(b.id) - parseInt(a.id)
       );
+      dataId.current = parseInt(diaryList[0].id) + 1;
 
-      if (diaryList.length >= 1) {
-        dataId.current = parseInt(diaryList[0].id) + 1;
-        dispatch({ type: "INIT", data: diaryList });
-      }
+      dispatch({ type: "INIT", data: diaryList });
     }
   }, []);
 
