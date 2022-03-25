@@ -14,11 +14,14 @@ import Diary from "./Routes/pages/Diary";
 import MyButton from "./Routes/Components/MyButton";
 import MyHeader from "./Routes/Components/MyHeader";
 
-// import Loading from "./Loading";
+/* firebase */
+import { firestore } from "./firebase";
+import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 
+// import Loading from "./Loading";
 // import RouteTest from "./Routes/Components/RouteTest";
 
-const reducer = (state: any, action: any) => {
+const reducer = (state, action) => {
   let newState = [];
   switch (action.type) {
     case " INIT": {
@@ -29,11 +32,11 @@ const reducer = (state: any, action: any) => {
       break;
     }
     case "REMOVE": {
-      newState = state.filter((it: any) => it.id !== action.targetId);
+      newState = state.filter((it) => it.id !== action.targetId);
       break;
     }
     case "EDIT": {
-      newState = state.map((it: any) =>
+      newState = state.map((it) =>
         it.id === action.data.id ? { ...action.data } : it
       );
       break;
@@ -41,22 +44,25 @@ const reducer = (state: any, action: any) => {
     default:
       return state;
   }
-
-  localStorage.setItem("diary", JSON.stringify(newState));
+  firestore
+    .collection("diary", JSON.stringify(newState))
+    .set()
+    .then((doc) => {});
+  // localStorage.setItem("diary", JSON.stringify(newState));
   return newState;
 };
 
-export const DiaryStateContext = React.createContext("");
-export const DiaryDispatchContext = React.createContext({});
+export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {
-    const localData = localStorage.getItem("diary");
+    const localData = firestore.get("diary");
     if (localData) {
       const diaryList = JSON.parse(localData).sort(
-        (a: any, b: any) => parseInt(b.id) - parseInt(a.id)
+        (a, b) => parseInt(b.id) - parseInt(a.id)
       );
 
       if (diaryList.length >= 1) {
@@ -68,7 +74,7 @@ function App() {
 
   const dataId = useRef(0);
   // Create
-  const onCreate = (date: any, content: any, emotion: any) => {
+  const onCreate = (date, content, emotion) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -81,11 +87,11 @@ function App() {
     dataId.current += 1;
   };
   // Remove
-  const onRemove = (targetId: any) => {
+  const onRemove = (targetId) => {
     dispatch({ type: "REMOVE", targetId });
   };
   // EDIT
-  const onEdit = (targetId: any, date: any, content: any, emotion: any) => {
+  const onEdit = (targetId, date, content, emotion) => {
     dispatch({
       type: "EDIT",
       data: {
