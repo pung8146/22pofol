@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 import DiaryItem from "./DiaryItem";
 import MyButton from "./MyButton";
 
+const sortOptionList = [
+  { value: "latest", name: "최신순" },
+  { value: "oldest", name: "오래된 순" },
+];
+
 const filterOptionList = [
   { value: "all", name: "전부다" },
   { value: "good", name: "좋은 감정만" },
   { value: "bad", name: "안좋은 감정만" },
-];
-
-const sortOptionList = [
-  { value: "latest", name: "최신순" },
-  { value: "oldest", name: "오래된 순" },
 ];
 
 interface Ctl {
@@ -59,7 +59,6 @@ const DiaryList = ({ diaryList }: any) => {
     };
 
     const copyList = JSON.parse(JSON.stringify(diaryList));
-
     const filterdList =
       filter === "all"
         ? copyList

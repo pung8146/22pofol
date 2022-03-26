@@ -14,14 +14,11 @@ import Diary from "./Routes/pages/Diary";
 import MyButton from "./Routes/Components/MyButton";
 import MyHeader from "./Routes/Components/MyHeader";
 
-/* firebase */
-import { firestore } from "./firebase";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
-
 // import Loading from "./Loading";
+
 // import RouteTest from "./Routes/Components/RouteTest";
 
-const reducer = (state, action) => {
+const reducer = (state: any, action: any) => {
   let newState = [];
   switch (action.type) {
     case " INIT": {
@@ -32,11 +29,11 @@ const reducer = (state, action) => {
       break;
     }
     case "REMOVE": {
-      newState = state.filter((it) => it.id !== action.targetId);
+      newState = state.filter((it: any) => it.id !== action.targetId);
       break;
     }
     case "EDIT": {
-      newState = state.map((it) =>
+      newState = state.map((it: any) =>
         it.id === action.data.id ? { ...action.data } : it
       );
       break;
@@ -44,37 +41,31 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-  firestore
-    .collection("diary", JSON.stringify(newState))
-    .set()
-    .then((doc) => {});
-  // localStorage.setItem("diary", JSON.stringify(newState));
+  localStorage.setItem("diary", JSON.stringify(newState));
   return newState;
 };
 
-export const DiaryStateContext = React.createContext();
-export const DiaryDispatchContext = React.createContext();
+export const DiaryStateContext = React.createContext("");
+export const DiaryDispatchContext = React.createContext({});
 
 function App() {
   const [data, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {
-    const localData = firestore.get("diary");
+    const localData = localStorage.getItem("diary");
     if (localData) {
       const diaryList = JSON.parse(localData).sort(
-        (a, b) => parseInt(b.id) - parseInt(a.id)
+        (a: any, b: any) => parseInt(b.id) - parseInt(a.id)
       );
+      dataId.current = parseInt(diaryList[0].id) + 1;
 
-      if (diaryList.length >= 1) {
-        dataId.current = parseInt(diaryList[0].id) + 1;
-        dispatch({ type: "INIT", data: diaryList });
-      }
+      dispatch({ type: "INIT", data: diaryList });
     }
   }, []);
 
   const dataId = useRef(0);
   // Create
-  const onCreate = (date, content, emotion) => {
+  const onCreate = (date: any, content: any, emotion: any) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -87,11 +78,11 @@ function App() {
     dataId.current += 1;
   };
   // Remove
-  const onRemove = (targetId) => {
+  const onRemove = (targetId: any) => {
     dispatch({ type: "REMOVE", targetId });
   };
   // EDIT
-  const onEdit = (targetId, date, content, emotion) => {
+  const onEdit = (targetId: any, date: any, content: any, emotion: any) => {
     dispatch({
       type: "EDIT",
       data: {
