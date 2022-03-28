@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { DiaryStateContext } from "../../App";
+import { DiaryStateContext } from "./Blog";
 import { getStringDate } from "../../util/date";
 import { emotionList } from "../../util/emotion";
 import MyButton from "../Components/MyButton";

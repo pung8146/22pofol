@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
-import { DiaryDispatchContext } from "../../App";
+import { DiaryDispatchContext } from "../pages/Blog";
 import EmotionItem from "./EmotionItem";
 
 import MyButton from "./MyButton";
