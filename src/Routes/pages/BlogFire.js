@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 import "../../App.css";
-import Home from "../pages/Home";
-import New from "../pages/New";
-import Edit from "../pages/Edit";
-import Diary from "../pages/Diary";
+import Home from "./Home";
+import New from "./New";
+import Edit from "./Edit";
+import Diary from "./Diary";
 import MyButton from "../Components/MyButton";
 import MyHeader from "../Components/MyHeader";
 
@@ -16,8 +16,19 @@ import MyHeader from "../Components/MyHeader";
 
 // import RouteTest from "./Routes/Components/RouteTest";
 
-const reducer = (state: any, action: any) => {
+import {
+  addDoc,
+  collection,
+  setDoc,
+  getDoc,
+  getDocs,
+} from "firebase/firestore";
+import { db } from "../../firebase";
+import { async } from "@firebase/util";
+
+const reducer = async (state, action) => {
   let newState = [];
+
   switch (action.type) {
     case "INIT": {
       return action.data;
@@ -27,11 +38,11 @@ const reducer = (state: any, action: any) => {
       break;
     }
     case "REMOVE": {
-      newState = state.filter((it: any) => it.id !== action.targetId);
+      newState = state.filter((it) => it.id !== action.targetId);
       break;
     }
     case "EDIT": {
-      newState = state.map((it: any) =>
+      newState = state.map((it) =>
         it.id === action.data.id ? { ...action.data } : it
       );
       break;
@@ -39,31 +50,38 @@ const reducer = (state: any, action: any) => {
     default:
       return state;
   }
-  localStorage.setItem("diary", JSON.stringify(newState));
+
+  // localStorage.setItem("diary", JSON.stringify(newState));
+  try {
+    const docRef = await setDoc(collection(db, "test"), {});
+  } catch (e) {}
   return newState;
 };
 
-export const DiaryStateContext = React.createContext("");
-export const DiaryDispatchContext = React.createContext({});
+export const DiaryStateContext = React.createContext();
+export const DiaryDispatchContext = React.createContext();
 
-function Blog() {
+function BlogFire() {
   const [data, dispatch] = useReducer(reducer, []);
 
   useEffect(() => {
-    const localData = localStorage.getItem("diary");
-    if (localData) {
-      const diaryList = JSON.parse(localData).sort(
-        (a: any, b: any) => parseInt(b.id) - parseInt(a.id)
-      );
-      dataId.current = parseInt(diaryList[0].id) + 1;
+    const fetchData = async () => {
+      const localData = await getDocs(collection(db, "test"));
+      if (localData) {
+        const diaryList = JSON.parse(localData)
+          .forEach((doc) => {})
+          .sort((a, b) => parseInt(b.id) - parseInt(a.id));
+        dataId.current = parseInt(diaryList[0].id) + 1;
 
-      dispatch({ type: "INIT", data: diaryList });
-    }
+        dispatch({ type: "INIT", data: diaryList });
+      }
+    };
+    fetchData();
   }, []);
 
   const dataId = useRef(0);
   // Create
-  const onCreate = (date: any, content: any, emotion: any) => {
+  const onCreate = (date, content, emotion) => {
     dispatch({
       type: "CREATE",
       data: {
@@ -76,11 +94,11 @@ function Blog() {
     dataId.current += 1;
   };
   // Remove
-  const onRemove = (targetId: any) => {
+  const onRemove = (targetId) => {
     dispatch({ type: "REMOVE", targetId });
   };
   // EDIT
-  const onEdit = (targetId: any, date: any, content: any, emotion: any) => {
+  const onEdit = (targetId, date, content, emotion) => {
     dispatch({
       type: "EDIT",
       data: {
@@ -119,4 +137,4 @@ function Blog() {
   );
 }
 
-export default Blog;
+export default BlogFire;
