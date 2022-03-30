@@ -17,15 +17,24 @@ const Wrapper = styled(motion.div)`
 
 const Box = styled.div`
   width: 100vw;
-  height: 50vh;
   display: flex;
 `;
 
 const AnimalBox = styled(Box)`
   background: gold;
+  height: 60vh;
 `;
+
+// const GrabZone = styled.div`
+//   margin-top: 30vh;
+//   width: 100%;
+//   background: pink;
+//   height: 30vh;
+// `;
+
 const IntroBox = styled(Box)`
   background: white;
+  height: 40vh;
 `;
 
 const Cursor = () => {
@@ -89,12 +98,52 @@ const usePosition = () => {
 
   return [ref, position];
 };
+// GrabZone
+const GrabZone = ({ cursorGrabbed, onCursorGrabbed }) => {
+  const [outerRef, outerHovered] = useHover();
+  const [innerRef, innerHovered] = useHover();
+  const [isExtended, setExtendedArm] = useState(false);
 
+  let state = "waiting";
+  if (outerHovered) {
+    state = "stalking";
+  }
+  if (innerHovered) {
+    state = "grabbing";
+  }
+  if (cursorGrabbed) {
+    state = "grabbed";
+  }
+
+  // If state is grabbing for a long time, they're being clever!
+  useEffect(() => {
+    let timer;
+    if (state === "grabbing") {
+      timer = setTimeout(() => {
+        // Not so clever now, are they?
+        setExtendedArm(true);
+        timer = null;
+      }, 2000);
+    }
+    return () => {
+      setExtendedArm(false);
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, [state]);
+};
 function Animal() {
+  const [cursorGrabbed, setcursorGrabbed] = useState(false);
+  const screenStyle = cursorGrabbed ? { cursor: "none" } : {};
+
   return (
     <>
       <Wrapper>
-        <AnimalBox></AnimalBox>
+        <AnimalBox>
+          <button className="Exit">Exit</button>
+          <GrabZone />
+        </AnimalBox>
         <IntroBox />
       </Wrapper>
     </>

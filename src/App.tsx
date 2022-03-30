@@ -6,12 +6,14 @@ import styled from "styled-components";
 
 import "./App.css";
 import Blog from "./Routes/pages/Blog";
+import BlogFire from "./Routes/pages/BlogFire";
 import Animal from "./Routes/Animal";
 function App() {
   return (
     <div>
       <Animal />
       <Blog />
+      {/* <BlogFire /> */}
     </div>
   );
 }
