@@ -8,11 +8,13 @@ import "./App.css";
 import Blog from "./Routes/pages/Blog";
 import BlogFire from "./Routes/pages/BlogFire";
 import Animal from "./Routes/Animal";
+import Comment from "./Comment";
 function App() {
   return (
     <div>
+      {/* <Comment /> */}
       <Animal />
-      <Blog />
+      {/* <Blog /> */}
       {/* <BlogFire /> */}
     </div>
   );

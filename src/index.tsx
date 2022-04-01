@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import App from "./App";
 import { createGlobalStyle } from "styled-components";
-import { ThemeProvider } from 'styled-components';
-import { catTheme } from './theme';
+import { ThemeProvider } from "styled-components";
+import { catTheme } from "./theme";
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
@@ -72,14 +72,13 @@ a {
 }
 `;
 
-
 ReactDOM.render(
   <React.StrictMode>
     {/* <RecoilRoot> */}
-      <ThemeProvider theme={catTheme}>
-        <GlobalStyle />
-        <App />
-      </ThemeProvider>
+    <ThemeProvider theme={catTheme}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
     {/* </RecoilRoot> */}
   </React.StrictMode>,
   document.getElementById("root")

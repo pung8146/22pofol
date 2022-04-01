@@ -22,8 +22,9 @@ import {
   setDoc,
   getDoc,
   getDocs,
+  onSnapshot,
 } from "firebase/firestore";
-import { db } from "../../firebase";
+import db from "../../firebase";
 import { async } from "@firebase/util";
 
 const reducer = async (state, action) => {
@@ -78,6 +79,19 @@ function BlogFire() {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const localData = onSnapshot(collection(db, "test"), (snapshot) => {
+      if (localData) {
+        const diaryList = JSON.parse(localData)
+          .forEach((doc) => {})
+          .sort((a, b) => parseInt(b.id) - parseInt(a.id));
+        dataId.current = parseInt(diaryList[0]);
+      }
+      dispatch(snapshot.docs.map((doc) => doc.data()));
+    });
+    return localData;
+  });
 
   const dataId = useRef(0);
   // Create
