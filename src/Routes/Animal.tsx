@@ -1,21 +1,30 @@
 import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
-
+import backgroundImg from "../img/moonNight.jpg";
+import moonImg from "../img/moon.png";
 const Wrapper = styled.div`
-  height: 100vh;
-  width: 100vw;
   justify-content: center;
   align-items: center;
-  background-color: tomato;
 `;
 
 const Main = styled(motion.div)`
   width: 100vw;
-  height: 300px;
+  height: 100vh;
   background-color: skyblue;
-  border-radius: 15px;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
+  display: flex;
+  background-image: url(${backgroundImg});
+`;
+
+const Moon = styled(motion.img)`
+  width: 15vw;
+  height: 15vw;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 28%;
+  left: 20.5%;
+  cursor: pointer;
 `;
 
 const Box = styled(motion.div)`
@@ -23,8 +32,6 @@ const Box = styled(motion.div)`
   height: 300px;
   display: flex;
   background-color: gold;
-  border-radius: 15px;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
 `;
 
 const Skilles = styled(motion.div)`
@@ -68,7 +75,20 @@ const skilleVariants = {
 function Animal() {
   return (
     <Wrapper>
-      <Main />
+      <Main>
+        <Moon
+          drag
+          dragSnapToOrigin
+          dragConstraints={{ top: -50, bottom: 50, left: -50, right: 50 }}
+          animate={{ rotateZ: 360 }}
+          transition={{
+            repeat: Infinity,
+            duration: 20,
+          }}
+          src={moonImg}
+          alt="moon"
+        />
+      </Main>
       <Box variants={boxVariants} initial="start" animate="end">
         <Skilles whileHover="hover" variants={skilleVariants} />
         <Skilles whileHover="hover" variants={skilleVariants} />

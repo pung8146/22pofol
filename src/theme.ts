@@ -1,11 +1,11 @@
 import { DefaultTheme } from "styled-components";
 
-export const catTheme:DefaultTheme = {
-    backgroundColor:"white",
-    textColor:"black",
-}
+export const lightTheme: DefaultTheme = {
+  backgroundColor: "white",
+  textColor: "black",
+};
 
-export const dogTheme:DefaultTheme = {
-    backgroundColor:"black",
-    textColor:"white",
-}
+export const darkTheme: DefaultTheme = {
+  backgroundColor: "black",
+  textColor: "white",
+};
