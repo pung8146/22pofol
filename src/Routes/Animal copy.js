@@ -1,12 +1,4 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-  createContext,
-} from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import styled from "styled-components";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import "./Animal.css";
 
 /**
@@ -156,17 +148,7 @@ class Animal extends React.Component {
         React.createElement(
           "h2",
           null,
-          "Welcome to the internet."
-        ) /*#__PURE__*/,
-        React.createElement(
-          "p",
-          null,
-          "This is a classic website, no traps or weird stuff!"
-        ) /*#__PURE__*/,
-        React.createElement(
-          "p",
-          null,
-          "Feel free to browse, relax and, I don't know, click the button down there? Might as well, right?"
+          "Welcome to the internet. HIHIHIHIHIHIHIH"
         ) /*#__PURE__*/,
 
         React.createElement(
@@ -178,7 +160,6 @@ class Animal extends React.Component {
           "Debug"
         )
       ) /*#__PURE__*/,
-
       React.createElement(
         "button",
         {
@@ -198,6 +179,11 @@ class Animal extends React.Component {
           cursorGrabbed: cursorGrabbed,
           gameOver: gameOver,
         })
+      ),
+      React.createElement(
+        "div",
+        { className: "IntroPart" } /*#__PURE__*/,
+        React.createElement("h2", null, "hello")
       )
     );
   }
@@ -297,10 +283,11 @@ const Grabber = ({ state, gameOver, extended, onCursorGrabbed }) => {
     "div",
     { className: grabberClass } /*#__PURE__*/,
     React.createElement("div", { className: "grabber__body" }) /*#__PURE__*/,
-    React.createElement("img", {
-      className: "grabber__face",
-      src: ASSETS.head,
-    }) /*#__PURE__*/,
+    // React.createElement("img", {
+    //   className: "grabber__face",
+    //   src: ASSETS.head,
+    // }),
+    /*#__PURE__*/
     React.createElement(
       "div",
       {

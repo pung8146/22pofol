@@ -12,8 +12,8 @@ import Comment from "./Comment";
 function App() {
   return (
     <div>
-      <Comment />
-      {/* <Animal /> */}
+      {/* <Comment /> */}
+      <Animal />
       {/* <Blog /> */}
       {/* <BlogFire /> */}
     </div>
