@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { motion, useViewportScroll } from "framer-motion";
 import GlobalStyle from "./styles/GlobalStyle";
-import { motion } from "framer-motion";
 import styled from "styled-components";
+
+// imporrt Img
 import backgroundImg from "./img/moonNight.jpg";
 import backgroundImg2 from "./img/moonNight2.jpg";
 import moonImg from "./img/moon.png";
@@ -31,7 +33,6 @@ const Moon = styled(motion.img)`
   width: 15vw;
   height: 15vw;
   position: absolute;
-  z-index: 2;
   justify-content: center;
   align-items: center;
   top: 28%;
@@ -40,8 +41,6 @@ const Moon = styled(motion.img)`
 `;
 
 const Box = styled(motion.div)`
-  position: relative;
-  z-index: 1;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -93,50 +92,33 @@ const skilleVariants = {
 };
 
 function App() {
-  const [clicked, setClicked] = useState(false);
-  const toggleClicked = () => setClicked((prev) => !prev);
+  const { scrollY } = useViewportScroll();
+
+  useEffect(() => {
+    scrollY.onChange(() => {
+      console.log(scrollY.get());
+    });
+  }, []);
   return (
     <>
       <GlobalStyle />
-      <Wrapper onClick={toggleClicked}>
+      <Wrapper>
         <Main>
-          {!clicked ? (
-            <Moon
-              drag
-              dragSnapToOrigin
-              dragConstraints={{ top: -50, bottom: 50, left: -50, right: 50 }}
-              animate={{
-                rotateZ: 360,
-                transition: { duration: 20, repeat: Infinity },
-              }}
-              transition={{
-                duration: 1,
-              }}
-              src={moonImg}
-              alt="moon"
-              layoutId="moon"
-            />
-          ) : null}
+          <Moon
+            drag
+            dragSnapToOrigin
+            dragConstraints={{ top: -50, bottom: 50, left: -50, right: 50 }}
+            animate={{ rotateZ: 360 }}
+            transition={{
+              repeat: Infinity,
+              duration: 20,
+            }}
+            src={moonImg}
+            alt="moon"
+          />
         </Main>
         <Box variants={boxVariants} initial="start" animate="end">
           <AboutTitle>About Me</AboutTitle>
-          {clicked ? (
-            <Moon
-              drag
-              dragSnapToOrigin
-              dragConstraints={{ top: -50, bottom: 50, left: -50, right: 50 }}
-              animate={{
-                rotateZ: 360,
-                transition: { duration: 20, repeat: Infinity },
-              }}
-              transition={{
-                duration: 1,
-              }}
-              src={moonImg}
-              alt="moon"
-              layoutId="moon"
-            />
-          ) : null}
           <Skilles whileHover="hover" variants={skilleVariants} />
           <Skilles whileHover="hover" variants={skilleVariants} />
           <Skilles whileHover="hover" variants={skilleVariants} />

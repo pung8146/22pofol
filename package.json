@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.181",
     "@types/react-beautiful-dnd": "^13.1.2",
     "babel-plugin-styled-components": "^2.0.6",
     "eslint": "^8.10.0",
