@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import GlobalStyle from "./styles/GlobalStyle";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // import "./App.css";
 import Header from "./Routes/Components/Header";
@@ -12,10 +13,13 @@ function App() {
     <div>
       <GlobalStyle />
       <Header />
-      {/* <Loading /> */}
-      <Home />
-      <About />
-      <Comment />
+      <BrowserRouter>
+        {/* <Loading /> */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/About" element={<About />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

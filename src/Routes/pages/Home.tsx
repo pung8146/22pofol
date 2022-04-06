@@ -1,66 +1,57 @@
-import { useContext, useEffect, useState } from "react";
-import MyHeader from "../Components/MyHeader";
-import MyButton from "../Components/MyButton";
-import DiaryList from "../Components/DiaryList";
-import { DiaryStateContext } from "./Blog";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { motion, useViewportScroll } from "framer-motion";
+import styled from "styled-components";
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const Home = () => {
-  const diaryList: any = useContext(DiaryStateContext);
+// imporrt Img
+import backgroundImg from "../../img/moonNight.jpg";
+import moonImg from "../../img/moon.png";
 
-  const [data, setData] = useState([]);
-  const [curDate, setCurDate] = useState(new Date());
-  const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
+const Wrapper = styled.div`
+  justify-content: center;
+  align-items: center;
+`;
 
-  useEffect(() => {
-    const titleElement = document.getElementsByTagName("title")[0];
-    titleElement.innerHTML = `감정 일기장`;
-  }, []);
+const Main = styled(motion.div)`
+  width: 100vw;
+  height: 100vh;
+  background-color: skyblue;
+  display: flex;
+  background-image: url(${backgroundImg});
+`;
 
-  useEffect(() => {
-    if (diaryList.length >= 1) {
-      const firstDay = new Date(
-        curDate.getFullYear(),
-        curDate.getMonth(),
-        1
-      ).getTime();
+const Moon = styled(motion.img)`
+  width: 15vw;
+  height: 15vw;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 28%;
+  left: 20.5%;
+  cursor: pointer;
+`;
 
-      const lastDay = new Date(
-        curDate.getFullYear(),
-        curDate.getMonth() + 1,
-        0,
-        23,
-        59,
-        59
-      ).getTime();
-
-      setData(
-        diaryList.filter((it: any) => firstDay <= it.date && it.date <= lastDay)
-      );
-    }
-  }, [diaryList, curDate]);
-
-  const increaseMonth = () => {
-    setCurDate(
-      new Date(curDate.getFullYear(), curDate.getMonth() + 1, curDate.getDate())
-    );
-  };
-
-  const decreaseMonth = () => {
-    setCurDate(
-      new Date(curDate.getFullYear(), curDate.getMonth() - 1, curDate.getDate())
-    );
-  };
-
+function Home() {
   return (
-    <div>
-      <MyHeader
-        headText={headText}
-        leftChild={<MyButton text={"<"} onClick={decreaseMonth} />}
-        rightChild={<MyButton text={">"} onClick={increaseMonth} />}
-      />
-      <DiaryList diaryList={data} />
-    </div>
+    <>
+      <Wrapper>
+        <Main>
+          <Moon
+            drag
+            dragSnapToOrigin
+            dragConstraints={{ top: -50, bottom: 50, left: -50, right: 50 }}
+            animate={{ rotateZ: 360 }}
+            transition={{
+              repeat: Infinity,
+              duration: 20,
+            }}
+            src={moonImg}
+            alt="moon"
+          />
+        </Main>
+      </Wrapper>
+    </>
   );
-};
+}
 
 export default Home;

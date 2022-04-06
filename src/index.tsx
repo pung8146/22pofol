@@ -4,6 +4,8 @@ import App from "./App";
 import { createGlobalStyle } from "styled-components";
 import { ThemeProvider } from "styled-components";
 import { lightTheme } from "./theme";
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap');
@@ -77,7 +79,9 @@ ReactDOM.render(
     {/* <RecoilRoot> */}
     <ThemeProvider theme={lightTheme}>
       <GlobalStyle />
+      {/* <BrowserRouter> */}
       <App />
+      {/* </BrowserRouter> */}
     </ThemeProvider>
     {/* </RecoilRoot> */}
   </React.StrictMode>,
