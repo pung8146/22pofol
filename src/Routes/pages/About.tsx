@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { motion, useViewportScroll, useAnimation } from "framer-motion";
 import styled from "styled-components";
+import "./About.css";
 
 const Box = styled(motion.div)`
   width: 100vw;
@@ -44,36 +45,6 @@ const boxVariants = {
   },
 };
 
-const skilleBoxVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      duration: 1,
-      delayChildren: 0.5,
-      staggerChildren: 0.5,
-    },
-  },
-  potateto: {},
-};
-
-const skilleVariants = {
-  start: {
-    opacity: 0,
-    y: -10,
-  },
-  end: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 2,
-      staggerChildren: 0.2,
-      delayChildren: 0.2,
-    },
-  },
-  hover: { scale: 1.2, rotateZ: 90 },
-};
-
 function About() {
   const navAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
@@ -90,42 +61,20 @@ function About() {
     <>
       <Box variants={boxVariants} initial="start" animate="end">
         <AboutTitle>About Me</AboutTitle>
-        <SkilleBox
-          variants={skilleBoxVariants}
-          initial="hidden"
-          animate={navAnimation}
-        >
-          <Skilles
-            whileHover="hover"
-            variants={skilleVariants}
-            initial="start"
-            animate="end"
-          />
-          <Skilles
-            whileHover="hover"
-            variants={skilleVariants}
-            initial="start"
-            animate="end"
-          />
-          <Skilles
-            whileHover="hover"
-            variants={skilleVariants}
-            initial="start"
-            animate="end"
-          />
-          <Skilles
-            whileHover="hover"
-            variants={skilleVariants}
-            initial="start"
-            animate="end"
-          />
-          <Skilles
-            whileHover="hover"
-            variants={skilleVariants}
-            initial="start"
-            animate="end"
-          />
-        </SkilleBox>
+        <div className="spinner-box">
+          <div className="solar-system">
+            <div className="earth-orbit orbit">
+              <div className="planet earth"></div>
+              <div className="venus-orbit orbit">
+                <div className="planet venus"></div>
+                <div className="mercury-orbit orbit">
+                  <div className="planet mercury"></div>
+                  <div className="sun"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </Box>
     </>
   );
