@@ -1,11 +1,15 @@
 import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
-import { motion, useViewportScroll } from "framer-motion";
+import { motion, useViewportScroll, useAnimation } from "framer-motion";
 import styled from "styled-components";
 
 const Box = styled(motion.div)`
   width: 100vw;
   height: 100vh;
-  background-color: #002a60;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(14, 14, 147, 1) 100%
+  );
   justify-content: space-around;
 `;
 
@@ -16,7 +20,7 @@ const SkilleBox = styled(motion.div)`
   display: flex;
   width: 90vw;
   height: 500px;
-  margin: 300px auto;
+  margin: 400px auto;
   background-color: tomato;
   justify-content: space-around;
 `;
@@ -30,20 +34,27 @@ const Skilles = styled(motion.div)`
 
 const boxVariants = {
   start: {
-    opacity: 0,
-    scale: 0.5,
+    opacity: 0.5,
   },
   end: {
-    scale: 1,
     opacity: 1,
     transition: {
-      type: "spring",
-      duration: 0.5,
-      bounce: 0.5,
-      delayChildren: 0.5,
-      staggerChildren: 0.5,
+      duration: 2,
+      delayChildren: 3,
+      staggerChildren: 4,
     },
   },
+};
+
+const skilleBoxVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      duration: 1,
+    },
+  },
+  potateto: {},
 };
 
 const skilleVariants = {
@@ -54,21 +65,66 @@ const skilleVariants = {
   end: {
     opacity: 1,
     y: 0,
+    transition: {
+      duration: 2,
+      staggerChildren: 0.2,
+      delayChildren: 0.2,
+    },
   },
   hover: { scale: 1.2, rotateZ: 90 },
 };
 
 function About() {
+  const navAnimation = useAnimation();
+  const { scrollY } = useViewportScroll();
+  useEffect(() => {
+    scrollY.onChange(() => {
+      if (scrollY.get() > 700) {
+        navAnimation.start("show");
+      } else {
+        navAnimation.start("hidden");
+      }
+    });
+  }, [scrollY, navAnimation]);
   return (
     <>
       <Box variants={boxVariants} initial="start" animate="end">
         <AboutTitle>About Me</AboutTitle>
-        <SkilleBox>
-          <Skilles whileHover="hover" variants={skilleVariants} />
-          <Skilles whileHover="hover" variants={skilleVariants} />
-          <Skilles whileHover="hover" variants={skilleVariants} />
-          <Skilles whileHover="hover" variants={skilleVariants} />
-          <Skilles whileHover="hover" variants={skilleVariants} />
+        <SkilleBox
+          variants={skilleBoxVariants}
+          initial="hidden"
+          animate={navAnimation}
+        >
+          <Skilles
+            whileHover="hover"
+            variants={skilleVariants}
+            initial="start"
+            animate="end"
+          />
+          <Skilles
+            whileHover="hover"
+            variants={skilleVariants}
+            initial="start"
+            animate="end"
+          />
+          <Skilles
+            whileHover="hover"
+            variants={skilleVariants}
+            initial="start"
+            animate="end"
+          />
+          <Skilles
+            whileHover="hover"
+            variants={skilleVariants}
+            initial="start"
+            animate="end"
+          />
+          <Skilles
+            whileHover="hover"
+            variants={skilleVariants}
+            initial="start"
+            animate="end"
+          />
         </SkilleBox>
       </Box>
     </>

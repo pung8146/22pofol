@@ -31,6 +31,8 @@ const Moon = styled(motion.img)`
   cursor: pointer;
 `;
 
+const moonVariants = {};
+
 function Home() {
   return (
     <>
