@@ -9,6 +9,7 @@ const Nav = styled(motion.nav)`
   align-items: center;
   font-size: 14px;
   position: fixed;
+  z-index: 2;
   width: 100%;
   top: 0;
   height: 80px;
@@ -58,7 +59,7 @@ const navVariants = {
     backgroundColor: "rgba(255,255,255,0.3)",
   },
   scroll: {
-    backgroundColor: "rgba(255,255,255,0.6)",
+    backgroundColor: "rgba(255,255,255,0.3)",
   },
 };
 
@@ -75,7 +76,7 @@ function Header() {
     });
   }, [scrollY, navAnimation]);
   return (
-    <Nav variants={navVariants} animate={navAnimation} initial={"top"}>
+    <Nav variants={navVariants} initial={"top"} animate={navAnimation}>
       <Col>
         <Logo />
         <Items>

@@ -91,7 +91,7 @@ function Comment() {
       <Ul>
         {users.map((user) => {
           return (
-            <Li animate={{ x: "Math.random()*1" }}>
+            <Li>
               <h1>{user.name}</h1>
               <h1>{user.Content}</h1>
               <h1>{user.date}</h1>

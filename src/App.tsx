@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import React from "react";
 import GlobalStyle from "./styles/GlobalStyle";
 
 // import "./App.css";

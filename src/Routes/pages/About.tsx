@@ -40,8 +40,6 @@ const boxVariants = {
     opacity: 1,
     transition: {
       duration: 2,
-      delayChildren: 3,
-      staggerChildren: 4,
     },
   },
 };
@@ -52,6 +50,8 @@ const skilleBoxVariants = {
     opacity: 1,
     transition: {
       duration: 1,
+      delayChildren: 0.5,
+      staggerChildren: 0.5,
     },
   },
   potateto: {},
