@@ -75,6 +75,7 @@ const PlantVariants = {
   hover: {
     scale: 2,
     rotateX: 180,
+    background: "gold",
   },
 };
 

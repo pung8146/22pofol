@@ -48,16 +48,6 @@ const Ul = styled.ul`
   grid-template-columns: repeat(5, 1fr);
 `;
 
-const BGIMG = ["./img/spaceStar.jpg"];
-const IMG_NUMBER = 3;
-const getRandom = () => {
-  return Math.floor(Math.random() * IMG_NUMBER);
-};
-
-const planetBg = (IMG_NUMBER) => {
-  const backgroundimage = "url(BGIM)";
-};
-
 const Li = styled(motion.li)`
   margin: 20px auto;
   padding: 10px 0;
