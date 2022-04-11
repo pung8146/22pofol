@@ -2,6 +2,9 @@ import React, { useEffect, useLayoutEffect } from "react";
 import { motion, useViewportScroll, useAnimation } from "framer-motion";
 import styled from "styled-components";
 import "./About.css";
+import moonImg from "../../img/moon.png";
+import { hover } from "@testing-library/user-event/dist/hover";
+import { start } from "repl";
 
 const Box = styled(motion.div)`
   width: 100vw;
@@ -17,20 +20,40 @@ const Box = styled(motion.div)`
 const AboutTitle = styled(motion.h1)`
   color: white;
 `;
-const SkilleBox = styled(motion.div)`
-  display: flex;
-  width: 90vw;
-  height: 500px;
-  margin: 400px auto;
-  background-color: tomato;
-  justify-content: space-around;
+const SolarSystem = styled(motion.div)`
+  width: 800px;
+  height: 1000px;
+  margin: 60px auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 `;
-const Skilles = styled(motion.div)`
-  background-color: rgba(255, 255, 255, 0.6);
-  height: 200px;
-  width: 200px;
-  place-self: center;
-  border-radius: 100px;
+const Orbit = styled(motion.div)`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fafbfc;
+  border-radius: 50%;
+`;
+
+const Plant = styled(motion.div)`
+  position: absolute;
+  top: -35px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-size: cover;
+  background-image: url(${moonImg});
+  cursor: pointer;
+`;
+
+const Sun = styled(motion.div)`
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #ffab91;
+  cursor: pointer;
 `;
 
 const boxVariants = {
@@ -42,6 +65,16 @@ const boxVariants = {
     transition: {
       duration: 2,
     },
+  },
+};
+
+const PlantVariants = {
+  start: {
+    scale: 1,
+  },
+  hover: {
+    scale: 2,
+    rotateX: 180,
   },
 };
 
@@ -62,18 +95,37 @@ function About() {
       <Box variants={boxVariants} initial="start" animate="end">
         <AboutTitle>About Me</AboutTitle>
         <div className="spinner-box">
-          <div className="solar-system">
-            <div className="earth-orbit orbit">
-              <div className="planet earth"></div>
-              <div className="venus-orbit orbit">
-                <div className="planet venus"></div>
-                <div className="mercury-orbit orbit">
-                  <div className="planet mercury"></div>
-                  <div className="sun"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <SolarSystem>
+            <Orbit className="earth-orbit">
+              <Plant
+                variants={PlantVariants}
+                whileHover="hover"
+                className="earth"
+              />
+              <Orbit className="js-orbit">
+                <Plant
+                  variants={PlantVariants}
+                  whileHover="hover"
+                  className="js"
+                />
+                <Orbit className="venus-orbit">
+                  <Plant
+                    variants={PlantVariants}
+                    whileHover="hover"
+                    className="venus"
+                  />
+                  <Orbit className="mercury-orbit">
+                    <Plant
+                      variants={PlantVariants}
+                      whileHover="hover"
+                      className="mercury"
+                    />
+                    <Sun />
+                  </Orbit>
+                </Orbit>
+              </Orbit>
+            </Orbit>
+          </SolarSystem>
         </div>
       </Box>
     </>

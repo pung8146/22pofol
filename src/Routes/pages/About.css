@@ -16,9 +16,9 @@
 /* SOLAR SYSTEM */
 
 .solar-system {
-  width: 1000px;
+  width: 800px;
   height: 1000px;
-  margin: 0 auto;
+  margin: 60px auto;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -39,25 +39,28 @@
   -webkit-animation: spin 12s linear 0s infinite;
 }
 
-.venus-orbit {
+.js-orbit {
   width: 600px;
   height: 600px;
-  -webkit-animation: spin 7.4s linear 0s infinite;
+  -webkit-animation: spin 12s linear 0s infinite;
+}
+
+.venus-orbit {
+  width: 400px;
+  height: 400px;
+  -webkit-animation: spin 12s linear 0s infinite;
 }
 
 .mercury-orbit {
   width: 200px;
   height: 200px;
-  -webkit-animation: spin 3s linear 0s infinite;
+  -webkit-animation: spin 12s linear 0s infinite;
 }
 
+:hover {
+  animation-play-state: paused;
+}
 .planet {
-  position: absolute;
-  top: -35px;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #3ff9dc;
 }
 
 .sun {
@@ -65,14 +68,6 @@
   height: 35px;
   border-radius: 50%;
   background-color: #ffab91;
-}
-
-.leo {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
 }
 
 /* .blue-orbit {

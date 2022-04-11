@@ -10,11 +10,12 @@ import {
 } from "firebase/firestore";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import backgroundImg from "./img/spaceStar.jpg";
 
 const CommentBox = styled(motion.div)`
   width: 100vw;
   height: 100vh;
-  background-color: #527ebf;
+  background-image: url(${backgroundImg});
 `;
 
 const InputForm = styled(motion.div)`
@@ -42,8 +43,23 @@ const Input = styled.input`
   border-radius: 10px;
   border: none;
 `;
-const Ul = styled.ul``;
+const Ul = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+`;
+
+const BGIMG = ["./img/spaceStar.jpg"];
+const IMG_NUMBER = 3;
+const getRandom = () => {
+  return Math.floor(Math.random() * IMG_NUMBER);
+};
+
+const planetBg = (IMG_NUMBER) => {
+  const backgroundimage = "url(BGIM)";
+};
+
 const Li = styled(motion.li)`
+  margin: 20px auto;
   padding: 10px 0;
   background-color: white;
   line-height: 30px;
@@ -53,6 +69,7 @@ const Li = styled(motion.li)`
   border-radius: 100px;
   text-align: center;
 `;
+
 function Comment() {
   const [newName, setNewName] = useState("");
   const [newContent, setNewContent] = useState("");
@@ -121,7 +138,6 @@ function Comment() {
         />
         <Input
           maxLength={25}
-          width={"60vw"}
           height={"50vh"}
           placeholder="Content..."
           onChange={(event) => setNewContent(event.target.value)}
