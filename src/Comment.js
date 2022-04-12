@@ -7,15 +7,19 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  orderBy,
+  query,
 } from "firebase/firestore";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import backgroundImg from "./img/spaceStar.jpg";
+import { url } from "inspector";
 
 const CommentBox = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   background-image: url(${backgroundImg});
+  /* background-color: black; */
 `;
 
 const InputForm = styled(motion.div)`
@@ -45,8 +49,15 @@ const Input = styled.input`
 `;
 const Ul = styled.ul`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 `;
+function randomBg() {
+  const bgSet = ["./img/PngSet/P1.jpg", "./img/PngSet/P2.jpg"];
+
+  const number = Math.floor(Math.random() * 2);
+
+  return number;
+}
 
 const Li = styled(motion.li)`
   margin: 20px auto;
@@ -58,6 +69,7 @@ const Li = styled(motion.li)`
   height: 200px;
   border-radius: 100px;
   text-align: center;
+  background: url();
 `;
 
 function Comment() {
@@ -70,8 +82,11 @@ function Comment() {
     await addDoc(usersCollectionRef, {
       name: newName,
       Content: newContent,
-      date: new Date().toISOString().substr(0, 10).replace("T", " "),
+      date: new Date().toISOString().substr(0, 20).replace("T", " "),
     });
+
+    alert("작성해 주셔서 감사합니다!!");
+    window.location.reload();
   };
 
   const updateUser = async (id, Content, date) => {
@@ -86,7 +101,10 @@ function Comment() {
 
   useEffect(() => {
     const getUsers = async () => {
-      const data = await getDocs(usersCollectionRef);
+      const data = await getDocs(
+        query(usersCollectionRef, orderBy("date", "desc"))
+      );
+
       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
@@ -101,7 +119,7 @@ function Comment() {
             <Li>
               <h1>{user.name}</h1>
               <h1>{user.Content}</h1>
-              <h1>{user.date}</h1>
+              <h1 style={{ fontSize: "15px" }}>{user.date}</h1>
               {/* <button
                 onClick={() => {
                   updateUser(user.id, user.Content, user.date);
@@ -132,7 +150,7 @@ function Comment() {
           placeholder="Content..."
           onChange={(event) => setNewContent(event.target.value)}
         />
-        <CreateBtn onClick={createUser}> Create User</CreateBtn>
+        <CreateBtn onClick={createUser}>Create User</CreateBtn>
       </InputForm>
     </CommentBox>
   );

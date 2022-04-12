@@ -3,8 +3,6 @@ import { motion, useViewportScroll, useAnimation } from "framer-motion";
 import styled from "styled-components";
 import "./About.css";
 import moonImg from "../../img/moon.png";
-import { hover } from "@testing-library/user-event/dist/hover";
-import { start } from "repl";
 
 const Box = styled(motion.div)`
   width: 100vw;
