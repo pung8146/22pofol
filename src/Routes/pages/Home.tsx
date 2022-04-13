@@ -18,6 +18,7 @@ const Main = styled(motion.div)`
   background-color: skyblue;
   display: flex;
   background-image: url(${backgroundImg});
+  background-size: cover;
 `;
 
 const Moon = styled(motion.img)`

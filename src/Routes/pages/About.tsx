@@ -6,7 +6,7 @@ import moonImg from "../../img/moon.png";
 
 const Box = styled(motion.div)`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(
     180deg,
     rgba(2, 0, 36, 1) 0%,
@@ -17,11 +17,14 @@ const Box = styled(motion.div)`
 
 const AboutTitle = styled(motion.h1)`
   color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 40px;
 `;
+// 행성계
 const SolarSystem = styled(motion.div)`
-  width: 800px;
-  height: 1000px;
-  margin: 60px auto;
+  width: 50vw;
+  margin: 100px auto 0;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -38,11 +41,12 @@ const Orbit = styled(motion.div)`
 const Plant = styled(motion.div)`
   position: absolute;
   top: -35px;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background-size: cover;
   background-image: url(${moonImg});
+  background-color: white;
   cursor: pointer;
 `;
 
@@ -51,7 +55,6 @@ const Sun = styled(motion.div)`
   height: 35px;
   border-radius: 50%;
   background-color: #ffab91;
-  cursor: pointer;
 `;
 
 const boxVariants = {
@@ -72,8 +75,7 @@ const PlantVariants = {
   },
   hover: {
     scale: 2,
-    rotateX: 180,
-    background: "gold",
+    rotateX: 360,
   },
 };
 

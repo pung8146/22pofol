@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import { useEffect } from "react";
+import { Link } from "react-scroll";
 
 const Nav = styled(motion.nav)`
   width: 100%;
@@ -59,6 +59,9 @@ const navVariants = {
     backgroundColor: "rgba(255,255,255,0.3)",
   },
   scroll: {
+    backgroundColor: "rgba(255,255,255,1)",
+  },
+  bottom: {
     backgroundColor: "rgba(255,255,255,0.3)",
   },
 };
@@ -70,6 +73,8 @@ function Header() {
     scrollY.onChange(() => {
       if (scrollY.get() > 80) {
         navAnimation.start("scroll");
+      } else if (scrollY.get() > 500) {
+        navAnimation.start("bottom");
       } else {
         navAnimation.start("top");
       }
@@ -79,23 +84,32 @@ function Header() {
     <Nav variants={navVariants} initial={"top"} animate={navAnimation}>
       <Col>
         <Logo />
+
         <Items>
-          <Item>
-            Home
-            <Circle />
-          </Item>
-          <Item>
-            About
-            <Circle />
-          </Item>
-          <Item>
-            Comment
-            <Circle />
-          </Item>
-          <Item>
-            Contact
-            <Circle />
-          </Item>
+          <Link to="1" spy={true} smooth={true}>
+            <Item>
+              Home
+              <Circle />
+            </Item>
+          </Link>
+          <Link to="2" spy={true} smooth={true}>
+            <Item>
+              About
+              <Circle />
+            </Item>
+          </Link>
+          <Link to="3" spy={true} smooth={true}>
+            <Item>
+              Comment
+              <Circle />
+            </Item>
+          </Link>
+          <Link to="4" spy={true} smooth={true}>
+            <Item>
+              Contact
+              <Circle />
+            </Item>
+          </Link>
         </Items>
       </Col>
       <Col>{/* <button>search</button> */}</Col>
