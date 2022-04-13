@@ -59,7 +59,7 @@ const navVariants = {
     backgroundColor: "rgba(255,255,255,0.3)",
   },
   scroll: {
-    backgroundColor: "rgba(255,255,255,1)",
+    backgroundColor: "rgba(255,255,255,0.5)",
   },
   bottom: {
     backgroundColor: "rgba(255,255,255,0.3)",
@@ -86,25 +86,25 @@ function Header() {
         <Logo />
 
         <Items>
-          <Link to="1" spy={true} smooth={true}>
+          <Link to="move1" spy={true} smooth={true}>
             <Item>
               Home
               <Circle />
             </Item>
           </Link>
-          <Link to="2" spy={true} smooth={true}>
+          <Link to="move2" spy={true} smooth={true}>
             <Item>
               About
               <Circle />
             </Item>
           </Link>
-          <Link to="3" spy={true} smooth={true}>
+          <Link to="move3" spy={true} smooth={true}>
             <Item>
               Comment
               <Circle />
             </Item>
           </Link>
-          <Link to="4" spy={true} smooth={true}>
+          <Link to="move4" spy={true} smooth={true}>
             <Item>
               Contact
               <Circle />

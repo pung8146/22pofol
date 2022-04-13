@@ -55,6 +55,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.181",
     "@types/react-beautiful-dnd": "^13.1.2",
+    "@types/react-scroll": "^1.8.3",
     "babel-plugin-styled-components": "^2.0.6",
     "eslint": "^8.10.0",
     "eslint-config-airbnb": "^19.0.4",
