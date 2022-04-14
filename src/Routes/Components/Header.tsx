@@ -4,15 +4,12 @@ import { useEffect } from "react";
 import { Link } from "react-scroll";
 
 const Nav = styled(motion.nav)`
-  width: 100%;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
   position: fixed;
   z-index: 2;
-  width: 100%;
   top: 0;
-  height: 80px;
 `;
 
 const Col = styled.div`
@@ -39,6 +36,7 @@ const Item = styled.li`
   justify-content: center;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 `;
 
 const Circle = styled.span`
@@ -56,13 +54,15 @@ const Circle = styled.span`
 
 const navVariants = {
   top: {
-    backgroundColor: "rgba(255,255,255,0.3)",
+    backgroundColor: "rgba(0,0,0,0.5)",
+    color: "white",
+    width: "15%",
+    height: "100vh",
   },
   scroll: {
     backgroundColor: "rgba(255,255,255,0.5)",
-  },
-  bottom: {
-    backgroundColor: "rgba(255,255,255,0.3)",
+    width: "100%",
+    height: "80px",
   },
 };
 
@@ -71,10 +71,8 @@ function Header() {
   const { scrollY } = useViewportScroll();
   useEffect(() => {
     scrollY.onChange(() => {
-      if (scrollY.get() > 80) {
+      if (scrollY.get() > 100) {
         navAnimation.start("scroll");
-      } else if (scrollY.get() > 500) {
-        navAnimation.start("bottom");
       } else {
         navAnimation.start("top");
       }

@@ -3,16 +3,19 @@ import { motion, useViewportScroll, useAnimation } from "framer-motion";
 import styled from "styled-components";
 import "./About.css";
 import moonImg from "../../img/moon.png";
+import galaxyImg from "../../img/galaxy.png";
 
 const Box = styled(motion.div)`
   width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(
+  background-color: black;
+  /* background-image: url(${galaxyImg}); */
+  /* background: linear-gradient(
     180deg,
     rgba(2, 0, 36, 1) 0%,
     rgba(14, 14, 147, 1) 100%
   );
-  justify-content: space-around;
+  justify-content: space-around; */
 `;
 
 const AboutTitle = styled(motion.h1)`
@@ -63,7 +66,9 @@ const boxVariants = {
   },
   end: {
     opacity: 1,
+    backgroundImage: `url(${galaxyImg})`,
     transition: {
+      delay: 10,
       duration: 2,
     },
   },
@@ -93,7 +98,7 @@ function About() {
   }, [scrollY, navAnimation]);
   return (
     <>
-      <Box variants={boxVariants} initial="start" animate="end">
+      <Box id="move2" variants={boxVariants} initial="start" animate="end">
         <AboutTitle>About Me</AboutTitle>
         <div className="spinner-box">
           <SolarSystem>

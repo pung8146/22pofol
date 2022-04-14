@@ -24,8 +24,8 @@ import p2 from "./img/pngSet/p2.png";
 const CommentBox = styled(motion.div)`
   width: 100vw;
   height: 100vh;
-  background-image: url(${backgroundImg});
-  /* background-color: black; */
+  /* background-image: url(${backgroundImg}); */
+  background-color: black;
 `;
 
 const Ul = styled.ul`
@@ -140,7 +140,7 @@ function Comment() {
   }, []);
 
   return (
-    <CommentBox>
+    <CommentBox id="move3">
       <Ul>
         {users.map((user) => {
           return (
