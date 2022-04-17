@@ -13,7 +13,6 @@ const Nav = styled(motion.nav)`
 `;
 
 const Col = styled.div`
-  display: flex;
   align-items: center;
 `;
 
@@ -21,13 +20,13 @@ const Logo = styled.svg`
   width: 30px;
   height: 20px;
   background-color: gold;
-  margin-right: 50px;
+  margin-top: 60px;
 `;
 
-const Items = styled.ul`
+const Items = styled(motion.ul)`
+  text-align: center;
   display: flex;
-  align-items: center;
-  margin-left: 10px;
+  flex-direction: column;
 `;
 
 const Item = styled.li`
@@ -60,9 +59,22 @@ const navVariants = {
     height: "100vh",
   },
   scroll: {
-    backgroundColor: "rgba(255,255,255,0.5)",
+    backgroundColor: "rgba(0,0,0,0)",
     width: "100%",
     height: "80px",
+  },
+};
+
+const navScrollVariants = {
+  top: {
+    display: "flex",
+    flexDirection: "column",
+    lineHeight: "80px",
+    fontSize: "20px",
+  },
+  scroll: {
+    display: "flex",
+    flexDirection: "row",
   },
 };
 
@@ -81,31 +93,34 @@ function Header() {
   return (
     <Nav variants={navVariants} initial={"top"} animate={navAnimation}>
       <Col>
-        <Logo />
-
-        <Items>
+        <Items
+          variants={navScrollVariants}
+          initial={"top"}
+          animate={navAnimation}
+        >
+          <Logo />
           <Link to="move1" spy={true} smooth={true}>
             <Item>
               Home
-              <Circle />
+              {/* <Circle /> */}
             </Item>
           </Link>
           <Link to="move2" spy={true} smooth={true}>
             <Item>
               About
-              <Circle />
+              {/* <Circle /> */}
             </Item>
           </Link>
           <Link to="move3" spy={true} smooth={true}>
             <Item>
               Comment
-              <Circle />
+              {/* <Circle /> */}
             </Item>
           </Link>
           <Link to="move4" spy={true} smooth={true}>
             <Item>
               Contact
-              <Circle />
+              {/* <Circle /> */}
             </Item>
           </Link>
         </Items>

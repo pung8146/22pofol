@@ -1,87 +1,118 @@
 import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
-import { motion, useViewportScroll } from "framer-motion";
-import styled, { keyframes } from "styled-components";
+import { motion, useAnimation, useViewportScroll } from "framer-motion";
+import styled from "styled-components";
 // import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // imporrt Img
-import backgroundImg from "../../img/moonNight.jpg";
-import moonImg from "../../img/moon.png";
+import backgroundImg from "../../img/SpaceBg.jpg";
+import spaceBottom from "../../img/SpaceBottom.png";
+import scrollImg from "../../img/scrolldown.gif";
 
 const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 const Main = styled(motion.div)`
   width: 100vw;
   height: 100vh;
-  background-color: skyblue;
-  display: flex;
-  /* background-image: url(${backgroundImg}); */
-  background-size: cover;
+  background-image: url(${backgroundImg});
+  overflow: hidden;
 `;
 
-const Moon = styled(motion.img)`
-  width: 15vw;
-  height: 15vw;
-  position: absolute;
+const SeaLeaf = styled(motion.img)`
+  width: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
-  top: 28%;
-  left: 20.5%;
-  cursor: pointer;
 `;
 
-const typing = keyframes`
-    from { width: 0 }
-  to { width: 100% }
+const leafVariants = {
+  start: {
+    translateY: "-200px",
+  },
+  end: {
+    translateY: 0,
+  },
+};
+
+// intro me
+const Intro = styled(motion.div)`
+  width: 100%;
+  text-align: center;
 `;
 
-const blink = keyframes`
-  from, to { border-color: transparent }
-  50% { border-color: black }
+const IntroName = styled(motion.h1)`
+  font-weight: bold;
+  width: 100%;
+  font-size: 40px;
+  color: white;
+  text-align: center;
+  margin: 90px 0 0 90px;
+  line-height: 80px;
+
+  & span {
+    font-size: 60px;
+  }
 `;
 
-const IntroMe = styled(motion.h1)`
-  font-size: 60px;
-  height: 60px;
-  color: #fff;
-  font-family: monospace;
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: 0.15em solid orange; /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: 0.15em; /* Adjust as needed */
-  animation: ${typing} 3.5s steps(30, end), ${blink} 0.5s step-end infinite;
+const IntroText = styled(motion.h2)`
+  width: 100%;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+  margin: 90px 0 0 90px;
+  line-height: 40px;
+
+  & span {
+    font-size: 60px;
+  }
 `;
 
-const moonVariants = {};
+const ScrollDown = styled(motion.img)`
+  width: 100px;
+  margin: 0 auto;
+  margin: 180px 0 0 180px;
+`;
 
 function Home() {
+  const leafAnimation = useAnimation();
+  const { scrollY } = useViewportScroll();
+  useEffect(() => {
+    scrollY.onChange(() => {
+      if (scrollY.get() > 80) {
+        leafAnimation.start("start");
+      } else {
+        leafAnimation.start("end");
+      }
+    });
+  }, [scrollY, leafAnimation]);
   return (
     <>
-      <Wrapper id="move1">
-        <Main>
-          <IntroMe>
-            안녕하세요 .
-            <br />
-          </IntroMe>
-          <Moon
-            drag
-            dragSnapToOrigin
-            dragConstraints={{ top: -50, bottom: 50, left: -50, right: 50 }}
-            animate={{ rotateZ: 360 }}
-            transition={{
-              repeat: Infinity,
-              duration: 20,
-            }}
-            src={moonImg}
-            alt="moon"
+      <Wrapper>
+        <Main id="move1">
+          <Intro>
+            <IntroName>
+              배우는걸 좋아하는 <br />
+              <span>박상훈</span>입니다.
+            </IntroName>
+            <IntroText>
+              퍼블리셔 와 디자이너를 거치고
+              <br />
+              개발하는것에 재미와 욕심이 생겨서 <br />
+              프론트 엔드 개발자를 희망하고 있습니다.
+            </IntroText>
+            <ScrollDown src={scrollImg} />
+          </Intro>
+          <SeaLeaf
+            variants={leafVariants}
+            initial="end"
+            animate={leafAnimation}
+            src={spaceBottom}
+            alt="SpaceBg"
           />
         </Main>
       </Wrapper>
     </>
   );
 }
-
 export default Home;

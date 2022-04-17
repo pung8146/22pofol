@@ -66,10 +66,10 @@ const boxVariants = {
   },
   end: {
     opacity: 1,
-    backgroundImage: `url(${galaxyImg})`,
+    // backgroundImage: `url(${galaxyImg})`,
     transition: {
-      delay: 10,
-      duration: 2,
+      // delay: 10,
+      // duration: 2,
     },
   },
 };
