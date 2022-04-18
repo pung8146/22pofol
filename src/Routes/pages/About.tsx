@@ -9,6 +9,8 @@ const Box = styled(motion.div)`
   width: 100vw;
   min-height: 100vh;
   background-color: black;
+  display: flex;
+  flex-wrap: wrap;
   /* background-image: url(${galaxyImg}); */
   /* background: linear-gradient(
     180deg,
@@ -19,20 +21,30 @@ const Box = styled(motion.div)`
 `;
 
 const AboutTitle = styled(motion.h1)`
+  width: 100%;
   color: white;
   text-align: center;
-  padding: 20px 0;
+  padding: 60px 0;
   font-size: 40px;
+  font-weight: bold;
+`;
+// left 스킬
+const MySkilles = styled(motion.div)`
+  background-color: white;
+  width: 50vw;
+  height: 500px;
 `;
 // 행성계
-const SolarSystem = styled(motion.div)`
+const RightBox = styled(motion.div)`
   width: 50vw;
-  margin: 100px auto 0;
-  justify-content: center;
-  align-items: center;
+`;
+
+const SolarSystem = styled(motion.div)`
+  margin: 0 auto;
   text-align: center;
 `;
 const Orbit = styled(motion.div)`
+  margin: 0 auto;
   position: relative;
   display: flex;
   justify-content: center;
@@ -62,7 +74,7 @@ const Sun = styled(motion.div)`
 
 const boxVariants = {
   start: {
-    opacity: 0.5,
+    opacity: 1,
   },
   end: {
     opacity: 1,
@@ -89,18 +101,24 @@ function About() {
   const { scrollY } = useViewportScroll();
   useEffect(() => {
     scrollY.onChange(() => {
-      if (scrollY.get() > 700) {
-        navAnimation.start("show");
+      if (scrollY.get() > 600) {
+        navAnimation.start("end");
       } else {
-        navAnimation.start("hidden");
+        navAnimation.start("start");
       }
     });
   }, [scrollY, navAnimation]);
   return (
     <>
-      <Box id="move2" variants={boxVariants} initial="start" animate="end">
+      <Box
+        id="move2"
+        variants={boxVariants}
+        initial="start"
+        animate={navAnimation}
+      >
         <AboutTitle>About Me</AboutTitle>
-        <div className="spinner-box">
+        <MySkilles></MySkilles>
+        <RightBox>
           <SolarSystem>
             <Orbit className="earth-orbit">
               <Plant
@@ -132,7 +150,7 @@ function About() {
               </Orbit>
             </Orbit>
           </SolarSystem>
-        </div>
+        </RightBox>
       </Box>
     </>
   );

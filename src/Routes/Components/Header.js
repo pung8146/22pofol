@@ -3,8 +3,12 @@ import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import { useEffect } from "react";
 import { Link } from "react-scroll";
 
+// navLink
+
 const Nav = styled(motion.nav)`
+  display: flex;
   justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   font-size: 14px;
   position: fixed;
@@ -24,8 +28,8 @@ const Logo = styled.svg`
 `;
 
 const Items = styled(motion.ul)`
-  text-align: center;
   display: flex;
+  text-align: center;
   flex-direction: column;
 `;
 
@@ -36,19 +40,6 @@ const Item = styled.li`
   display: flex;
   flex-direction: column;
   cursor: pointer;
-`;
-
-const Circle = styled.span`
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  bottom: -15px;
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  background-color: white;
-  /* background-color: ${(props) => props.theme.red}; */
 `;
 
 const navVariants = {
@@ -76,6 +67,17 @@ const navScrollVariants = {
     display: "flex",
     flexDirection: "row",
   },
+};
+
+// myProfile
+const MyProfile = styled(motion.div)`
+  background-color: white;
+  width: 100%;
+  height: 200px;
+`;
+const profileScrollVariants = {
+  top: { display: "flex" },
+  scroll: {},
 };
 
 function Header() {
@@ -125,7 +127,11 @@ function Header() {
           </Link>
         </Items>
       </Col>
-      <Col>{/* <button>search</button> */}</Col>
+      <MyProfile
+        variants={profileScrollVariants}
+        initial={"top"}
+        animate={navAnimation}
+      ></MyProfile>
     </Nav>
   );
 }

@@ -20,6 +20,8 @@ const Main = styled(motion.div)`
 `;
 
 const SeaLeaf = styled(motion.img)`
+  bottom: -200px;
+  position: absolute;
   width: 100%;
   height: 100%;
   justify-content: center;
@@ -79,7 +81,7 @@ function Home() {
   const { scrollY } = useViewportScroll();
   useEffect(() => {
     scrollY.onChange(() => {
-      if (scrollY.get() > 80) {
+      if (scrollY.get() > 200) {
         leafAnimation.start("start");
       } else {
         leafAnimation.start("end");
@@ -107,6 +109,7 @@ function Home() {
             variants={leafVariants}
             initial="end"
             animate={leafAnimation}
+            transition={{ type: "twin", stiffness: 1 }}
             src={spaceBottom}
             alt="SpaceBg"
           />

@@ -19,6 +19,16 @@ import p2 from "./img/pngSet/p2.png";
 // import p4 from "./img/pngSet/p4.png";
 // import p5 from "./img/pngSet/p5.png";
 
+// 제목 부분
+const CommentTitle = styled(motion.h1)`
+  width: 100%;
+  color: white;
+  text-align: center;
+  padding: 60px 0;
+  font-size: 40px;
+  font-weight: bold;
+`;
+
 //  코멘트 부분
 
 const CommentBox = styled(motion.div)`
@@ -141,6 +151,7 @@ function Comment() {
 
   return (
     <CommentBox id="move3">
+      <CommentTitle>COMMENT</CommentTitle>
       <Ul>
         {users.map((user) => {
           return (
