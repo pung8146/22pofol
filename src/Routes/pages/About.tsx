@@ -25,15 +25,21 @@ const AboutTitle = styled(motion.h1)`
   color: white;
   text-align: center;
   padding: 60px 0;
-  font-size: 40px;
+  font-size: 60px;
   font-weight: bold;
 `;
 // left 스킬
-const MySkilles = styled(motion.div)`
-  background-color: white;
+const LeftBox = styled(motion.div)`
+  background-color: gold;
   width: 50vw;
   height: 500px;
 `;
+const IntroMe = styled(motion.h1)`
+  color: white;
+  font-size: 20px;
+  line-height: 40px;
+`;
+
 // 행성계
 const RightBox = styled(motion.div)`
   width: 50vw;
@@ -117,7 +123,19 @@ function About() {
         animate={navAnimation}
       >
         <AboutTitle>About Me</AboutTitle>
-        <MySkilles></MySkilles>
+        <LeftBox>
+          <IntroMe>
+            처음 입문은 아카데미에서 퍼블리셔 과정을 수료하고 퍼블리셔와
+            디자이너로써 업무를 하였습니다. <br /> 그러면서 FrontEnd 기술들을
+            접하고 공부하면서 그것을 스스로 적용시키는 재미에 매료되었습니다.
+            <br />
+            그러면서 전문적으로 FrontEnd분야에 도전해보고 싶다고생각했습니다.
+            <br /> 요새 필수인 JS와 React 는 공부하면서 제 포트폴리오의 기반으로
+            적용시켰으며, CRUD 구현을 위해 FireBase를 이용하였습니다, 또한
+            TS,Next,Gatsby등 여러 기술들을 공부하면서 간단한 프로젝트등을
+            구현하는등 계속 성장해가기 위해 노력하고있습니다.
+          </IntroMe>
+        </LeftBox>
         <RightBox>
           <SolarSystem>
             <Orbit className="earth-orbit">

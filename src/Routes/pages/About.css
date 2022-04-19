@@ -30,12 +30,6 @@
   -webkit-animation: spin 12s linear 0s infinite;
 }
 
-.earth-orbit {
-  width: 700px;
-  height: 700px;
-  -webkit-animation: spin 12s linear 0s infinite;
-}
-
 .js-orbit {
   width: 500px;
   height: 500px;

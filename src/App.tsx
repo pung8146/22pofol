@@ -13,7 +13,7 @@ function App() {
   return (
     <Wrapper>
       <GlobalStyle />
-      {/* <Header /> */}
+      <Header />
       {/* <Loading /> */}
       <Home />
       <About />
