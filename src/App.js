@@ -2,6 +2,7 @@ import React from "react";
 import GlobalStyle from "./styles/GlobalStyle";
 import styled from "styled-components";
 
+import { FullPage, Slide } from "react-full-page";
 // import "./App.css";
 import Header from "./Routes/Components/Header";
 import Home from "./Routes/pages/Home";
@@ -14,10 +15,18 @@ function App() {
     <Wrapper>
       <GlobalStyle />
       <Header />
-      {/* <Loading /> */}
-      <Home />
-      <About />
-      <Comment />
+      <FullPage>
+        {/* <Loading /> */}
+        <Slide>
+          <Home />
+        </Slide>
+        <Slide>
+          <About />
+        </Slide>
+        <Slide>
+          <Comment />
+        </Slide>
+      </FullPage>
     </Wrapper>
   );
 }

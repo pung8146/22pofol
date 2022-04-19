@@ -24,13 +24,14 @@ const AboutTitle = styled(motion.h1)`
   width: 100%;
   color: white;
   text-align: center;
-  padding: 60px 0;
+  padding: 40px 0;
   font-size: 60px;
   font-weight: bold;
 `;
 // left 스킬
 const LeftBox = styled(motion.div)`
-  background-color: gold;
+  /* background-color: gold; */
+  padding: 20px 0 0 60px;
   width: 50vw;
   height: 500px;
 `;

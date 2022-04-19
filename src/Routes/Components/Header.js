@@ -17,10 +17,9 @@ const Nav = styled(motion.nav)`
 const Col = styled.div``;
 
 const Logo = styled.svg`
-  width: 30px;
-  height: 20px;
+  width: 100%;
+  height: 80px;
   background-color: gold;
-  margin-top: 60px;
 `;
 
 const Items = styled(motion.ul)`
@@ -30,12 +29,53 @@ const Items = styled(motion.ul)`
 `;
 
 const Item = styled.li`
-  margin-right: 20px;
+  margin-right: 5px;
   position: relative;
   justify-content: center;
   display: flex;
   flex-direction: column;
   cursor: pointer;
+
+  border: 1px solid transparent;
+  -webkit-transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+  transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+
+  ::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    z-index: -1;
+    width: 0%;
+    height: 1px;
+    background: #6098ff;
+    box-shadow: inset 0px 0px 0px #6098ff;
+    display: block;
+    -webkit-transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+    transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+  }
+  :hover::before {
+    width: 100%;
+  }
+  ::after {
+    content: "";
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: -1;
+    width: 0%;
+    height: 1px;
+    background: #6098ff;
+    -webkit-transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+    transition: all 0.4s cubic-bezier(0.5, 0.24, 0, 1);
+  }
+  :hover::after {
+    width: 100%;
+  }
+  :hover {
+    border-left: 1px solid #6098ff;
+    border-right: 1px solid #6098ff;
+  }
 `;
 
 const navVariants = {
@@ -66,13 +106,12 @@ const navScrollVariants = {
   scroll: {
     flexDirection: "row",
     flexWrap: "nowrap",
+    padding: "10px",
   },
 };
 
 // myProfile
-const MyProfile = styled(motion.div)`
-  background-color: gold;
-`;
+const MyProfile = styled(motion.div)``;
 const profileScrollVariants = {
   top: {
     width: "100%",
@@ -85,8 +124,8 @@ const profileScrollVariants = {
 };
 
 const ProfileDiv = styled(motion.div)`
-  width: 100%;
   display: flex;
+  justify-content: space-between;
 `;
 const IconDivVariants = {
   top: {
@@ -94,26 +133,31 @@ const IconDivVariants = {
     width: "100%",
   },
   scroll: {
-    lineHeight: "center",
-    flexWrap: "nowrap",
     width: "100%",
     height: "80px",
-    backgroundColor: "white",
   },
 };
 const ProfileA = styled(motion.a)`
-  width: 25%;
-  background-color: tomato;
-
+  width: 23%;
+  margin: 1%;
+  box-sizing: border-box;
+  background-color: white;
   img {
     width: 100%;
   }
 `;
 
-const ProfileH1 = styled(motion.h1)`
-  color: black;
-`;
-
+const ProfileH1 = styled(motion.h1)``;
+const h1Variants = {
+  top: {
+    fontSize: "20px",
+    margin: "20px 0 0 20px",
+    display: "block",
+  },
+  scroll: {
+    display: "none",
+  },
+};
 function Header() {
   const navAnimation = useAnimation();
   const { scrollY } = useViewportScroll();
@@ -184,9 +228,23 @@ function Header() {
           <ProfileA target="_blank" href="https://github.com/">
             <img src={github} alt="github" />
           </ProfileA>
-          <ProfileH1>Call. 010-2274-8146</ProfileH1>
+          <ProfileH1
+            variants={h1Variants}
+            initial={"top"}
+            animate={navAnimation}
+          >
+            Call.
+            <br /> 010-2274-8146
+          </ProfileH1>
           <br />
-          <ProfileH1>Email. pung8146@naver.com</ProfileH1>
+          <ProfileH1
+            variants={h1Variants}
+            initial={"top"}
+            animate={navAnimation}
+          >
+            Email.
+            <br /> pung8146@naver.com
+          </ProfileH1>
         </ProfileDiv>
       </MyProfile>
     </Nav>
