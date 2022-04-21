@@ -3,6 +3,7 @@ import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import { useEffect } from "react";
 import { Link } from "react-scroll";
 import github from "../../../src/img/github.png";
+import LOGO from "../../../src/img/logo.png";
 // navLink
 
 const Nav = styled(motion.nav)`
@@ -16,11 +17,21 @@ const Nav = styled(motion.nav)`
 
 const Col = styled.div``;
 
-const Logo = styled.svg`
-  width: 100%;
-  height: 80px;
-  background-color: gold;
+const Logo = styled(motion.div)`
+  background-image: url(${LOGO});
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
+const logoVariants = {
+  top: {
+    width: "100%",
+    height: "250px",
+  },
+  scroll: {
+    width: "100%",
+    height: "80px",
+  },
+};
 
 const Items = styled(motion.ul)`
   display: flex;
@@ -107,11 +118,18 @@ const navScrollVariants = {
     flexDirection: "row",
     flexWrap: "nowrap",
     padding: "10px",
+
+    $Logo: {
+      width: "20px",
+      backgroundColor: "white",
+    },
   },
 };
 
 // myProfile
-const MyProfile = styled(motion.div)``;
+const MyProfile = styled(motion.div)`
+  display: none;
+`;
 const profileScrollVariants = {
   top: {
     width: "100%",
@@ -179,7 +197,11 @@ function Header() {
           initial={"top"}
           animate={navAnimation}
         >
-          <Logo />
+          <Logo
+            variants={logoVariants}
+            initial={"top"}
+            animate={navAnimation}
+          />
           <Link to="move1" spy={true} smooth={true}>
             <Item>
               Home

@@ -3,6 +3,7 @@ import { reset } from "styled-reset";
 import { media } from "./theme";
 
 const GlobalStyle = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
     ${reset}
     :focus {
         outline: none;
@@ -14,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
     html{
         font-size: 11px;
         -webkit-text-size-adjust: none;
+        font-family: 'Jua', sans-serif;
         font-family: -apple-system,BlinkMacSystemFont,helvetica,Apple SD Gothic Neo,sans-serif;       
         font-display: fallback;
         ${media.tablet}{

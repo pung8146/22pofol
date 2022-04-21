@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 // imporrt Img
 import backgroundImg from "../../img/SpaceBg.jpg";
-import spaceBottom from "../../img/SpaceBottom.png";
+import spaceBottom from "../../img/SpaceBottom2.png";
 import scrollImg from "../../img/scrolldown.gif";
 
 const Wrapper = styled.div`
@@ -20,7 +20,7 @@ const Main = styled(motion.div)`
 `;
 
 const SeaLeaf = styled(motion.img)`
-  bottom: -200px;
+  bottom: -400px;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -30,7 +30,7 @@ const SeaLeaf = styled(motion.img)`
 
 const leafVariants = {
   start: {
-    translateY: "-200px",
+    translateY: "-400px",
   },
   end: {
     translateY: 0,
